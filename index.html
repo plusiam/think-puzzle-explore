@@ -35,7 +35,7 @@
             height: 210mm;
             margin: auto;
             background: white;
-            padding: 4mm;
+            padding: 3mm;
             border-radius: 12px;
             box-shadow: 0 8px 30px rgba(0,0,0,0.1);
             display: flex;
@@ -47,9 +47,10 @@
             justify-content: space-between;
             align-items: flex-start;
             border-bottom: 3px solid #7c3aed;
-            padding-bottom: 10px;
-            margin-bottom: 15px;
+            padding-bottom: 6mm;
+            margin-bottom: 8mm;
             flex-shrink: 0;
+            height: 20mm;
         }
 
         .title {
@@ -180,15 +181,17 @@
         
         .step-content {
             flex-grow: 1;
-            padding: 1mm;
+            padding: 2mm;
+            min-height: 120mm;
         }
         
         textarea {
             width: 100%;
             height: 100%;
-            padding: 12px;
+            min-height: 120mm;
+            padding: 15px;
             font-size: 16px;
-            line-height: 1.6;
+            line-height: 1.8;
             border: 2px solid #e5e7eb;
             border-radius: 8px;
             resize: none;
@@ -391,13 +394,14 @@
             
             /* 헤더 최적화 */
             .header {
-                padding-bottom: 8px;
-                margin-bottom: 10px;
+                padding-bottom: 4mm;
+                margin-bottom: 6mm;
                 border-bottom: 2px solid #7c3aed !important;
+                height: 15mm;
             }
             
             .title { 
-                font-size: 24px; 
+                font-size: 22px; 
                 color: #000 !important;
             }
             
@@ -409,7 +413,7 @@
             
             /* 섹션 최적화 */
             .sections {
-                gap: 2mm;
+                gap: 3mm;
             }
             
             .step {
@@ -417,28 +421,39 @@
             }
             
             .step-header {
-                height: 15mm;
-                padding: 1.5mm;
+                height: 18mm;
+                padding: 2mm;
                 background: #f8f9fa !important;
+                margin-bottom: 4mm;
+            }
+            
+            .step-emoji {
+                font-size: 28px;
             }
             
             .step-title { 
-                font-size: 18px; 
+                font-size: 20px; 
                 color: #000 !important;
             }
             
             .step-desc { 
-                font-size: 12px; 
-                margin-bottom: 6px;
+                font-size: 11px; 
+                margin-bottom: 4mm;
+                padding: 0 2mm;
+            }
+            
+            .step-content {
+                min-height: 110mm;
             }
             
             textarea { 
                 font-size: 14px; 
-                line-height: 1.4;
+                line-height: 1.6;
                 color: #000 !important;
                 background-color: white !important;
                 border: 1px solid #999 !important;
-                padding: 8px;
+                padding: 10px;
+                min-height: 110mm;
             }
             
             /* placeholder 텍스트 숨기기 */
@@ -517,12 +532,7 @@
                 <div class="step-content">
                     <textarea 
                         class="writing-area" 
-                        placeholder="이 주제에 대해 이미 알고 있다고 생각하는 내용을 자유롭게 적어보세요...
-                        
-예시:
-• 이것은 ○○○와 관련이 있는 것 같아요
-• 전에 ○○○에서 비슷한 것을 본 적이 있어요
-• ○○○라는 특징이 있을 것 같아요"
+                        placeholder="이 주제에 대해 이미 알고 있는 내용을 적어보세요..."
                         aria-label="생각 단계 작성란"></textarea>
                 </div>
             </div>
@@ -538,12 +548,7 @@
                 <div class="step-content">
                     <textarea 
                         class="writing-area" 
-                        placeholder="궁금한 점이나 이해하기 어려운 부분, 더 알고 싶은 것들을 적어보세요...
-                        
-예시:
-• 왜 ○○○가 그렇게 되는 걸까요?
-• ○○○와 ○○○의 차이점이 무엇인가요?
-• 만약 ○○○라면 어떻게 될까요?"
+                        placeholder="궁금한 점이나 이해하기 어려운 부분을 적어보세요..."
                         aria-label="퍼즐 단계 작성란"></textarea>
                 </div>
             </div>
@@ -559,13 +564,7 @@
                 <div class="step-content">
                     <textarea 
                         class="writing-area" 
-                        placeholder="궁금한 점들을 해결하기 위한 탐구 계획이나 방법을 적어보세요...
-                        
-예시:
-• ○○○에 대해 더 자세히 조사해보기
-• ○○○와 ○○○를 비교해보기
-• ○○○를 직접 실험해보기
-• 전문가나 선생님께 질문하기"
+                        placeholder="탐구 계획이나 방법을 적어보세요..."
                         aria-label="탐구 단계 작성란"></textarea>
                 </div>
             </div>
