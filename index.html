@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>생각-퍼즐-탐구 학습지 | Think-Puzzle-Explore Korean Template</title>
+    <meta name="description" content="교육용 사고가시화 도구 - 생각, 퍼즐, 탐구 단계를 통한 체계적 학습 템플릿">
+    <meta name="keywords" content="생각-퍼즐-탐구, Think Puzzle Explore, 사고가시화, 교육도구, 학습지, thinking routines">
+    <meta name="author" content="Thinking Routines Templates">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @page {
+            size: A4 landscape;
+            margin: 8mm;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #f4f7fa;
+            padding: 20px;
+            -webkit-print-color-adjust: exact;
+            color-adjust: exact;
+        }
+
+        .worksheet-container {
+            width: 297mm;
+            height: 210mm;
+            margin: auto;
+            background: white;
+            padding: 4mm;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            border-bottom: 3px solid #7c3aed;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+            flex-shrink: 0;
+        }
+
+        .title {
+            font-size: 28px;
+            font-weight: 700;
+            color: #7c3aed;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .title-emoji {
+            font-size: 32px;
+        }
+
+        .student-info {
+            display: flex;
+            gap: 15px;
+            padding-top: 5px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+        }
+
+        .info-item label {
+            font-weight: 600;
+            margin-right: 8px;
+            font-size: 12px;
+            color: #374151;
+        }
+
+        .info-item input {
+            border: none;
+            border-bottom: 2px solid #d1d5db;
+            width: 70px;
+            padding: 3px 6px;
+            font-size: 14px;
+            text-align: center;
+            transition: border-color 0.3s ease;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+        
+        .info-item input:focus {
+            outline: none;
+            border-bottom-color: #7c3aed;
+        }
+        
+        .sections {
+            display: flex;
+            gap: 4mm;
+            flex-grow: 1;
+        }
+        
+        .step {
+            flex: 1;
+            border: 4px solid;
+            border-radius: 12px;
+            padding: 3mm;
+            transition: all 0.3s ease;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .step:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .step.think { 
+            border-color: #3b82f6;
+            background: linear-gradient(135deg, rgba(59,130,246,0.02) 0%, rgba(59,130,246,0.01) 100%);
+        }
+        .step.puzzle { 
+            border-color: #f59e0b;
+            background: linear-gradient(135deg, rgba(245,158,11,0.02) 0%, rgba(245,158,11,0.01) 100%);
+        }
+        .step.inquiry { 
+            border-color: #10b981;
+            background: linear-gradient(135deg, rgba(16,185,129,0.02) 0%, rgba(16,185,129,0.01) 100%);
+        }
+
+        .step-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            padding: 2mm;
+            border-radius: 8px;
+            flex-shrink: 0;
+            height: 18mm;
+        }
+
+        .step.think .step-header { 
+            background: linear-gradient(135deg, rgba(59,130,246,0.1) 0%, rgba(59,130,246,0.05) 100%);
+        }
+        .step.puzzle .step-header { 
+            background: linear-gradient(135deg, rgba(245,158,11,0.1) 0%, rgba(245,158,11,0.05) 100%);
+        }
+        .step.inquiry .step-header { 
+            background: linear-gradient(135deg, rgba(16,185,129,0.1) 0%, rgba(16,185,129,0.05) 100%);
+        }
+        
+        .step-emoji {
+            font-size: 24px;
+            margin-right: 8px;
+        }
+        
+        .step-title {
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .step.think .step-title { color: #1d4ed8; }
+        .step.puzzle .step-title { color: #d97706; }
+        .step.inquiry .step-title { color: #047857; }
+        
+        .step-desc {
+            font-size: 14px;
+            margin-bottom: 8px;
+            color: #555;
+            line-height: 1.5;
+            padding: 0 2mm;
+        }
+        
+        .step-content {
+            flex-grow: 1;
+            padding: 1mm;
+        }
+        
+        textarea {
+            width: 100%;
+            height: 100%;
+            padding: 12px;
+            font-size: 16px;
+            line-height: 1.6;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            resize: none;
+            background-color: #fcfcfc;
+            transition: all 0.3s ease;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #7c3aed;
+            background-color: white;
+            box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+        }
+
+        /* Print Controls */
+        .print-controls { 
+            margin: 20px 0; 
+            text-align: center; 
+        }
+        
+        .print-button {
+            background: #7c3aed;
+            color: white; 
+            border: none; 
+            padding: 12px 24px;
+            border-radius: 8px; 
+            font-size: 16px; 
+            font-weight: bold;
+            cursor: pointer; 
+            box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
+            transition: all 0.3s ease;
+            margin: 0 10px;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+        
+        .print-button:hover { 
+            transform: translateY(-2px); 
+            box-shadow: 0 6px 16px rgba(124, 58, 237, 0.4); 
+        }
+        
+        .print-button:active { 
+            transform: translateY(0); 
+        }
+        
+        .print-button.save-result {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+        }
+        
+        .print-button.save-result:hover { 
+            box-shadow: 0 6px 16px rgba(16, 185, 129, 0.4); 
+        }
+        
+        .print-button.reset-button {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+        }
+        
+        .print-button.reset-button:hover { 
+            box-shadow: 0 6px 16px rgba(245, 158, 11, 0.4); 
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%;
+            background: rgba(0,0,0,0.6); 
+            display: flex; 
+            align-items: center;
+            justify-content: center; 
+            z-index: 1000; 
+            opacity: 0; 
+            visibility: hidden;
+            transition: opacity 0.3s ease;
+        }
+        
+        .modal-overlay.visible { 
+            opacity: 1; 
+            visibility: visible; 
+        }
+        
+        .modal-content {
+            background: white; 
+            padding: 30px; 
+            border-radius: 12px;
+            max-width: 500px; 
+            width: 90%; 
+            box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+            transform: scale(0.9); 
+            transition: transform 0.3s ease;
+        }
+        
+        .modal-overlay.visible .modal-content { 
+            transform: scale(1); 
+        }
+        
+        .modal-title { 
+            font-size: 22px; 
+            font-weight: 700; 
+            margin-bottom: 15px; 
+            color: #333;
+        }
+        
+        .modal-body { 
+            font-size: 15px; 
+            line-height: 1.6; 
+            margin-bottom: 25px; 
+            color: #555;
+        }
+        
+        .modal-body strong { 
+            color: #7c3aed; 
+        }
+        
+        .modal-body ul { 
+            list-style: none; 
+            padding-left: 0; 
+        }
+        
+        .modal-body li { 
+            margin-bottom: 8px; 
+        }
+        
+        .modal-buttons { 
+            display: flex; 
+            justify-content: flex-end; 
+            gap: 10px; 
+        }
+        
+        .modal-button {
+            padding: 10px 20px; 
+            border: none; 
+            border-radius: 6px; 
+            font-size: 16px;
+            font-weight: 600; 
+            cursor: pointer; 
+            transition: all 0.2s ease;
+        }
+        
+        .modal-button.confirm { 
+            background-color: #7c3aed; 
+            color: white; 
+        }
+        
+        .modal-button.confirm:hover { 
+            background-color: #6d28d9; 
+        }
+        
+        .modal-button.cancel { 
+            background-color: #e5e7eb; 
+            color: #374151; 
+        }
+        
+        .modal-button.cancel:hover { 
+            background-color: #d1d5db; 
+        }
+
+        /* Footer Credit */
+        .footer-credit {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            font-size: 12px;
+            color: #9ca3af;
+            background: rgba(255,255,255,0.9);
+            padding: 8px 12px;
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        @media print {
+            @page {
+                size: A4 landscape;
+                margin: 5mm;
+            }
+            
+            body { 
+                padding: 0; 
+                background-color: white !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            
+            .worksheet-container { 
+                margin: 0; 
+                box-shadow: none; 
+                border-radius: 0; 
+                width: 287mm;
+                height: 200mm;
+                padding: 2mm;
+            }
+            
+            .no-print, .modal-overlay, .footer-credit { 
+                display: none !important; 
+            }
+            
+            /* 헤더 최적화 */
+            .header {
+                padding-bottom: 8px;
+                margin-bottom: 10px;
+                border-bottom: 2px solid #7c3aed !important;
+            }
+            
+            .title { 
+                font-size: 24px; 
+                color: #000 !important;
+            }
+            
+            .info-item input {
+                font-size: 12px;
+                border-bottom: 1px solid #999 !important;
+                width: 60px;
+            }
+            
+            /* 섹션 최적화 */
+            .sections {
+                gap: 2mm;
+            }
+            
+            .step {
+                box-shadow: none !important;
+            }
+            
+            .step-header {
+                height: 15mm;
+                padding: 1.5mm;
+                background: #f8f9fa !important;
+            }
+            
+            .step-title { 
+                font-size: 18px; 
+                color: #000 !important;
+            }
+            
+            .step-desc { 
+                font-size: 12px; 
+                margin-bottom: 6px;
+            }
+            
+            textarea { 
+                font-size: 14px; 
+                line-height: 1.4;
+                color: #000 !important;
+                background-color: white !important;
+                border: 1px solid #999 !important;
+                padding: 8px;
+            }
+            
+            /* placeholder 텍스트 숨기기 */
+            textarea::placeholder,
+            .info-item input::placeholder {
+                color: transparent !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            .worksheet-container {
+                width: 100%;
+                height: auto;
+                min-height: 100vh;
+            }
+            
+            .sections {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .step {
+                min-height: 200px;
+            }
+            
+            .print-controls {
+                flex-wrap: wrap;
+            }
+            
+            .print-button {
+                margin: 5px;
+                font-size: 14px;
+                padding: 10px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="print-controls no-print">
+        <button class="print-button" onclick="showPrintModal()">🖨️ 빈 템플릿 인쇄</button>
+        <button class="print-button save-result" onclick="saveAsImage()">💾 학습 결과 저장</button>
+        <button class="print-button reset-button" onclick="resetWorksheet()">🔄 새로 작성하기</button>
+    </div>
+
+    <div class="worksheet-container">
+        <div class="header">
+            <div class="title">
+                <span class="title-emoji">🧩</span>
+                생각-퍼즐-탐구 학습지
+            </div>
+            <div class="student-info">
+                <div class="info-item">
+                    <label>학반:</label>
+                    <input type="text" class="info-input" placeholder="예: 3-2">
+                </div>
+                <div class="info-item">
+                    <label>이름:</label>
+                    <input type="text" class="info-input" placeholder="홍길동">
+                </div>
+            </div>
+        </div>
+
+        <div class="sections">
+            <div class="step think">
+                <div class="step-header">
+                    <span class="step-emoji">💡</span>
+                    <div class="step-title">생각 (Think)</div>
+                </div>
+                <div class="step-desc">
+                    현재 무엇을 알고 있고, 어떤 생각이 떠오르나요?
+                </div>
+                <div class="step-content">
+                    <textarea 
+                        class="writing-area" 
+                        placeholder="이 주제에 대해 이미 알고 있다고 생각하는 내용을 자유롭게 적어보세요...
+                        
+예시:
+• 이것은 ○○○와 관련이 있는 것 같아요
+• 전에 ○○○에서 비슷한 것을 본 적이 있어요
+• ○○○라는 특징이 있을 것 같아요"
+                        aria-label="생각 단계 작성란"></textarea>
+                </div>
+            </div>
+
+            <div class="step puzzle">
+                <div class="step-header">
+                    <span class="step-emoji">🧩</span>
+                    <div class="step-title">퍼즐 (Puzzle)</div>
+                </div>
+                <div class="step-desc">
+                    어떤 질문이나 퍼즐, 혼란스러운 점이 있나요?
+                </div>
+                <div class="step-content">
+                    <textarea 
+                        class="writing-area" 
+                        placeholder="궁금한 점이나 이해하기 어려운 부분, 더 알고 싶은 것들을 적어보세요...
+                        
+예시:
+• 왜 ○○○가 그렇게 되는 걸까요?
+• ○○○와 ○○○의 차이점이 무엇인가요?
+• 만약 ○○○라면 어떻게 될까요?"
+                        aria-label="퍼즐 단계 작성란"></textarea>
+                </div>
+            </div>
+
+            <div class="step inquiry">
+                <div class="step-header">
+                    <span class="step-emoji">🔍</span>
+                    <div class="step-title">탐구 (Explore)</div>
+                </div>
+                <div class="step-desc">
+                    퍼즐을 해결하기 위해 어떻게 탐구해 볼까요?
+                </div>
+                <div class="step-content">
+                    <textarea 
+                        class="writing-area" 
+                        placeholder="궁금한 점들을 해결하기 위한 탐구 계획이나 방법을 적어보세요...
+                        
+예시:
+• ○○○에 대해 더 자세히 조사해보기
+• ○○○와 ○○○를 비교해보기
+• ○○○를 직접 실험해보기
+• 전문가나 선생님께 질문하기"
+                        aria-label="탐구 단계 작성란"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-credit no-print">
+        Thinking Routines Templates
+    </div>
+
+    <div class="modal-overlay no-print" id="printModal">
+        <div class="modal-content">
+            <div class="modal-title">🖨️ 빈 템플릿 인쇄 설정 안내</div>
+            <div class="modal-body">
+                <p><strong>교사용 빈 템플릿</strong>을 인쇄합니다. 학생들에게 배포할 학습지를 만들 수 있습니다.</p>
+                <p>최상의 결과물을 위해, 인쇄 대화상자에서 아래 설정을 확인해주세요.</p>
+                <ul>
+                    <li><strong>대상:</strong> 실제 프린터 또는 'PDF로 저장' 선택</li>
+                    <li><strong>레이아웃:</strong> 🎨 <strong>가로</strong> (Landscape)</li>
+                    <li><strong>여백:</strong> 📄 <strong>최소</strong> 또는 '사용자 정의(5mm)'</li>
+                    <li><strong>옵션 더보기 → 머리글과 바닥글:</strong> 🚫 <strong>체크 해제</strong></li>
+                    <li><strong>옵션 더보기 → 배경 그래픽:</strong> ✅ <strong>체크</strong></li>
+                </ul>
+                <p>위 설정이 완료되었다면 '인쇄하기' 버튼을 눌러주세요.</p>
+            </div>
+            <div class="modal-buttons">
+                <button class="modal-button cancel" onclick="hidePrintModal()">취소</button>
+                <button class="modal-button confirm" onclick="executePrint()">인쇄하기</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const printModal = document.getElementById('printModal');
+        
+        function showPrintModal() { 
+            printModal.classList.add('visible'); 
+        }
+        
+        function hidePrintModal() { 
+            printModal.classList.remove('visible'); 
+        }
+        
+        function executePrint() {
+            hidePrintModal();
+            setTimeout(() => window.print(), 300);
+        }
+        
+        printModal.addEventListener('click', (event) => {
+            if (event.target === printModal) hidePrintModal();
+        });
+
+        // ESC 키로 모달 닫기
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                hidePrintModal();
+            }
+        });
+
+        // 학습 결과를 이미지로 저장하는 함수
+        async function saveAsImage() {
+            try {
+                // 로딩 상태 표시
+                const saveButton = document.querySelector('.save-result');
+                const originalText = saveButton.textContent;
+                saveButton.textContent = '📸 저장 중...';
+                saveButton.disabled = true;
+
+                // 현재 날짜와 시간으로 파일명 생성
+                const now = new Date();
+                const dateString = now.getFullYear() + 
+                    String(now.getMonth() + 1).padStart(2, '0') + 
+                    String(now.getDate()).padStart(2, '0') + '_' +
+                    String(now.getHours()).padStart(2, '0') + 
+                    String(now.getMinutes()).padStart(2, '0');
+                
+                // 학생 정보 가져오기
+                const studentInfo = document.querySelectorAll('.info-input');
+                const grade = studentInfo[0].value || '학반';
+                const name = studentInfo[1].value || '이름';
+                
+                const filename = `생각-퍼즐-탐구_${grade}_${name}_${dateString}.png`;
+
+                // HTML2Canvas로 워크시트 영역 캡처
+                const canvas = await html2canvas(document.querySelector('.worksheet-container'), {
+                    backgroundColor: '#ffffff',
+                    scale: 2, // 고해상도
+                    useCORS: true,
+                    allowTaint: true,
+                    logging: false,
+                    width: 1200,
+                    height: 848, // A4 가로 비율에 맞춰 조정
+                    scrollX: 0,
+                    scrollY: 0
+                });
+
+                // 캔버스를 이미지로 변환하여 다운로드
+                const link = document.createElement('a');
+                link.download = filename;
+                link.href = canvas.toDataURL('image/png', 0.95);
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+
+                // 버튼 원상복구
+                saveButton.textContent = originalText;
+                saveButton.disabled = false;
+
+                // 성공 메시지
+                setTimeout(() => {
+                    saveButton.textContent = '✅ 저장 완료!';
+                    setTimeout(() => {
+                        saveButton.textContent = originalText;
+                    }, 2000);
+                }, 500);
+
+            } catch (error) {
+                console.error('이미지 저장 중 오류:', error);
+                
+                // 오류 시 버튼 원상복구
+                const saveButton = document.querySelector('.save-result');
+                saveButton.textContent = '❌ 저장 실패';
+                saveButton.disabled = false;
+                
+                setTimeout(() => {
+                    saveButton.textContent = '💾 학습 결과 저장';
+                }, 3000);
+            }
+        }
+
+        // 새로 작성하기 함수
+        function resetWorksheet() {
+            const confirmReset = confirm('🔄 정말로 새로 작성하시겠습니까?\n\n현재 작성된 모든 내용이 삭제됩니다.\n이 작업은 되돌릴 수 없습니다.');
+            
+            if (confirmReset) {
+                // 모든 input 필드 초기화
+                const inputs = document.querySelectorAll('.info-input');
+                inputs.forEach(input => {
+                    input.value = '';
+                });
+                
+                // 모든 textarea 초기화
+                const textareas = document.querySelectorAll('.writing-area');
+                textareas.forEach(textarea => {
+                    textarea.value = '';
+                });
+                
+                // 첫 번째 input 필드에 포커스
+                if (inputs.length > 0) {
+                    inputs[0].focus();
+                }
+                
+                // 성공 메시지 표시
+                const resetButton = document.querySelector('.reset-button');
+                const originalText = resetButton.textContent;
+                resetButton.textContent = '✅ 초기화 완료!';
+                
+                setTimeout(() => {
+                    resetButton.textContent = originalText;
+                }, 2000);
+            }
+        }
+
+        // 페이지 로드 시 첫 번째 입력 필드에 포커스
+        window.addEventListener('load', function() {
+            const firstInput = document.querySelector('.info-input');
+            if (firstInput) {
+                firstInput.focus();
+            }
+        });
+
+        // 자동 저장 기능 (선택사항)
+        function autoSave() {
+            const data = {
+                grade: document.querySelectorAll('.info-input')[0].value,
+                name: document.querySelectorAll('.info-input')[1].value,
+                think: document.querySelectorAll('.writing-area')[0].value,
+                puzzle: document.querySelectorAll('.writing-area')[1].value,
+                explore: document.querySelectorAll('.writing-area')[2].value,
+                timestamp: new Date().toISOString()
+            };
+            
+            localStorage.setItem('think-puzzle-explore-draft', JSON.stringify(data));
+        }
+
+        // 입력 시마다 자동 저장
+        document.addEventListener('input', function(e) {
+            if (e.target.matches('.info-input, .writing-area')) {
+                autoSave();
+            }
+        });
+
+        // 페이지 로드 시 저장된 내용 복원
+        window.addEventListener('load', function() {
+            const savedData = localStorage.getItem('think-puzzle-explore-draft');
+            if (savedData) {
+                try {
+                    const data = JSON.parse(savedData);
+                    const inputs = document.querySelectorAll('.info-input');
+                    const textareas = document.querySelectorAll('.writing-area');
+                    
+                    if (inputs[0]) inputs[0].value = data.grade || '';
+                    if (inputs[1]) inputs[1].value = data.name || '';
+                    if (textareas[0]) textareas[0].value = data.think || '';
+                    if (textareas[1]) textareas[1].value = data.puzzle || '';
+                    if (textareas[2]) textareas[2].value = data.explore || '';
+                } catch (error) {
+                    console.log('저장된 데이터 복원 중 오류:', error);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
