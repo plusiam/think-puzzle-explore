@@ -17,17 +17,12 @@
             box-sizing: border-box;
         }
 
-        @page {
-            size: A4 landscape;
-            margin: 8mm;
-        }
-
         body {
             font-family: 'Noto Sans KR', sans-serif;
             background-color: #f4f7fa;
             padding: 20px;
             -webkit-print-color-adjust: exact;
-            color-adjust: exact;
+            print-color-adjust: exact;
         }
 
         .worksheet-container {
@@ -35,22 +30,22 @@
             height: 210mm;
             margin: auto;
             background: white;
-            padding: 3mm;
+            padding: 10mm;
             border-radius: 12px;
             box-shadow: 0 8px 30px rgba(0,0,0,0.1);
             display: flex;
             flex-direction: column;
+            overflow: hidden;
         }
 
         .header {
             display: flex;
             justify-content: space-between;
-            align-items: flex-start;
+            align-items: center;
             border-bottom: 3px solid #7c3aed;
-            padding-bottom: 6mm;
-            margin-bottom: 8mm;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
             flex-shrink: 0;
-            height: 20mm;
         }
 
         .title {
@@ -69,7 +64,6 @@
         .student-info {
             display: flex;
             gap: 15px;
-            padding-top: 5px;
         }
 
         .info-item {
@@ -80,14 +74,14 @@
         .info-item label {
             font-weight: 600;
             margin-right: 8px;
-            font-size: 12px;
+            font-size: 14px;
             color: #374151;
         }
 
         .info-item input {
             border: none;
             border-bottom: 2px solid #d1d5db;
-            width: 70px;
+            width: 80px;
             padding: 3px 6px;
             font-size: 14px;
             text-align: center;
@@ -102,15 +96,16 @@
         
         .sections {
             display: flex;
-            gap: 4mm;
+            gap: 10px;
             flex-grow: 1;
+            height: calc(100% - 80px);
         }
         
         .step {
             flex: 1;
             border: 4px solid;
             border-radius: 12px;
-            padding: 3mm;
+            padding: 10px;
             transition: all 0.3s ease;
             background: white;
             display: flex;
@@ -140,11 +135,10 @@
         .step-header {
             display: flex;
             align-items: center;
-            margin-bottom: 10px;
-            padding: 2mm;
+            margin-bottom: 8px;
+            padding: 8px;
             border-radius: 8px;
             flex-shrink: 0;
-            height: 18mm;
         }
 
         .step.think .step-header { 
@@ -172,25 +166,25 @@
         .step.inquiry .step-title { color: #047857; }
         
         .step-desc {
-            font-size: 14px;
-            margin-bottom: 8px;
+            font-size: 13px;
+            margin-bottom: 10px;
             color: #555;
             line-height: 1.5;
-            padding: 0 2mm;
+            padding: 0 8px;
+            flex-shrink: 0;
         }
         
         .step-content {
             flex-grow: 1;
-            padding: 2mm;
-            min-height: 120mm;
+            padding: 8px;
+            display: flex;
         }
         
         textarea {
             width: 100%;
             height: 100%;
-            min-height: 120mm;
-            padding: 15px;
-            font-size: 16px;
+            padding: 12px;
+            font-size: 14px;
             line-height: 1.8;
             border: 2px solid #e5e7eb;
             border-radius: 8px;
@@ -366,14 +360,16 @@
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
         
+        /* 인쇄 전용 스타일 */
         @media print {
             @page {
                 size: A4 landscape;
-                margin: 5mm;
+                margin: 0;
             }
             
             body { 
                 padding: 0; 
+                margin: 0;
                 background-color: white !important;
                 -webkit-print-color-adjust: exact;
                 print-color-adjust: exact;
@@ -383,9 +379,11 @@
                 margin: 0; 
                 box-shadow: none; 
                 border-radius: 0; 
-                width: 287mm;
-                height: 200mm;
-                padding: 2mm;
+                width: 297mm;
+                height: 210mm;
+                padding: 8mm;
+                page-break-after: avoid;
+                page-break-inside: avoid;
             }
             
             .no-print, .modal-overlay, .footer-credit { 
@@ -394,66 +392,75 @@
             
             /* 헤더 최적화 */
             .header {
-                padding-bottom: 4mm;
-                margin-bottom: 6mm;
+                padding-bottom: 6px;
+                margin-bottom: 10px;
                 border-bottom: 2px solid #7c3aed !important;
-                height: 15mm;
             }
             
             .title { 
-                font-size: 22px; 
-                color: #000 !important;
+                font-size: 24px; 
+                color: #7c3aed !important;
+            }
+            
+            .title-emoji {
+                font-size: 28px;
+            }
+            
+            .info-item label {
+                font-size: 12px;
             }
             
             .info-item input {
                 font-size: 12px;
                 border-bottom: 1px solid #999 !important;
-                width: 60px;
+                width: 70px;
             }
             
             /* 섹션 최적화 */
             .sections {
-                gap: 3mm;
+                gap: 8px;
+                height: calc(100% - 60px);
             }
             
             .step {
                 box-shadow: none !important;
+                transform: none !important;
+                border-width: 3px;
+                padding: 8px;
             }
             
             .step-header {
-                height: 18mm;
-                padding: 2mm;
+                padding: 6px;
+                margin-bottom: 6px;
                 background: #f8f9fa !important;
-                margin-bottom: 4mm;
             }
             
             .step-emoji {
-                font-size: 28px;
+                font-size: 20px;
             }
             
             .step-title { 
-                font-size: 20px; 
+                font-size: 18px; 
                 color: #000 !important;
             }
             
             .step-desc { 
                 font-size: 11px; 
-                margin-bottom: 4mm;
-                padding: 0 2mm;
+                margin-bottom: 8px;
+                padding: 0 6px;
             }
             
             .step-content {
-                min-height: 110mm;
+                padding: 6px;
             }
             
             textarea { 
-                font-size: 14px; 
+                font-size: 13px; 
                 line-height: 1.6;
                 color: #000 !important;
                 background-color: white !important;
                 border: 1px solid #999 !important;
                 padding: 10px;
-                min-height: 110mm;
             }
             
             /* placeholder 텍스트 숨기기 */
@@ -461,6 +468,24 @@
             .info-item input::placeholder {
                 color: transparent !important;
             }
+            
+            /* 색상 최적화 */
+            .step.think { 
+                border-color: #3b82f6 !important;
+                background: rgba(59,130,246,0.02) !important;
+            }
+            .step.puzzle { 
+                border-color: #f59e0b !important;
+                background: rgba(245,158,11,0.02) !important;
+            }
+            .step.inquiry { 
+                border-color: #10b981 !important;
+                background: rgba(16,185,129,0.02) !important;
+            }
+            
+            .step.think .step-title { color: #3b82f6 !important; }
+            .step.puzzle .step-title { color: #f59e0b !important; }
+            .step.inquiry .step-title { color: #10b981 !important; }
         }
 
         @media (max-width: 768px) {
@@ -472,11 +497,13 @@
                 width: 100%;
                 height: auto;
                 min-height: 100vh;
+                padding: 15px;
             }
             
             .sections {
                 flex-direction: column;
                 gap: 15px;
+                height: auto;
             }
             
             .step {
@@ -584,7 +611,7 @@
                 <ul>
                     <li><strong>대상:</strong> 실제 프린터 또는 'PDF로 저장' 선택</li>
                     <li><strong>레이아웃:</strong> 🎨 <strong>가로</strong> (Landscape)</li>
-                    <li><strong>여백:</strong> 📄 <strong>최소</strong> 또는 '사용자 정의(5mm)'</li>
+                    <li><strong>여백:</strong> 📄 <strong>없음</strong> 또는 '최소'</li>
                     <li><strong>옵션 더보기 → 머리글과 바닥글:</strong> 🚫 <strong>체크 해제</strong></li>
                     <li><strong>옵션 더보기 → 배경 그래픽:</strong> ✅ <strong>체크</strong></li>
                 </ul>
