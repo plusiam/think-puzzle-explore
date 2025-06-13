@@ -101,13 +101,16 @@
         
         .sections {
             display: flex;
+            flex-direction: row;
             gap: 12px;
             flex-grow: 1;
             height: calc(100% - 70px);
+            width: 100%;
         }
         
         .step {
             flex: 1;
+            width: calc(33.333% - 8px);
             border: 4px solid;
             border-radius: 16px;
             padding: 15px;
@@ -354,13 +357,13 @@
         /* 인쇄 전용 스타일 */
         @media print {
             @page {
-                size: A4 landscape;
+                size: 297mm 210mm;
                 margin: 0;
             }
             
             body { 
-                padding: 0; 
-                margin: 0;
+                padding: 0 !important; 
+                margin: 0 !important;
                 background-color: white !important;
                 -webkit-print-color-adjust: exact !important;
                 print-color-adjust: exact !important;
@@ -368,14 +371,16 @@
             }
             
             .worksheet-container { 
-                margin: 0; 
+                margin: 0 !important; 
                 box-shadow: none !important; 
                 border-radius: 0 !important; 
-                width: 297mm;
-                height: 210mm;
-                padding: 10mm;
-                page-break-after: avoid;
-                page-break-inside: avoid;
+                width: 297mm !important;
+                height: 210mm !important;
+                padding: 10mm !important;
+                page-break-after: avoid !important;
+                page-break-inside: avoid !important;
+                display: flex !important;
+                flex-direction: column !important;
             }
             
             .no-print, .modal-overlay, .footer-credit { 
@@ -383,8 +388,15 @@
             }
             
             /* 헤더 */
+            .header {
+                display: flex !important;
+                justify-content: space-between !important;
+                align-items: center !important;
+            }
+            
             .header-line {
                 background-color: #8b5cf6 !important;
+                height: 3px !important;
                 -webkit-print-color-adjust: exact !important;
                 print-color-adjust: exact !important;
             }
@@ -393,12 +405,26 @@
                 color: #8b5cf6 !important;
             }
             
+            /* 섹션 - 가로 배치 강제 */
+            .sections {
+                display: flex !important;
+                flex-direction: row !important;
+                gap: 12px !important;
+                width: 100% !important;
+                height: calc(100% - 70px) !important;
+            }
+            
             /* 섹션 - 색상 유지 중요! */
             .step {
+                flex: 1 !important;
+                width: calc(33.333% - 8px) !important;
+                display: flex !important;
+                flex-direction: column !important;
                 border-width: 4px !important;
                 -webkit-print-color-adjust: exact !important;
                 print-color-adjust: exact !important;
                 color-adjust: exact !important;
+                page-break-inside: avoid !important;
             }
             
             .step.think { 
@@ -419,6 +445,11 @@
                 -webkit-print-color-adjust: exact !important;
             }
             
+            .step-header {
+                display: flex !important;
+                align-items: center !important;
+            }
+            
             .step-title {
                 -webkit-print-color-adjust: exact !important;
                 print-color-adjust: exact !important;
@@ -434,7 +465,14 @@
                 color: #10b981 !important; 
             }
             
+            .step-content {
+                flex-grow: 1 !important;
+                display: flex !important;
+            }
+            
             .writing-box { 
+                width: 100% !important;
+                height: 100% !important;
                 background-color: #f9fafb !important;
                 border: 2px solid #e5e7eb !important;
                 -webkit-print-color-adjust: exact !important;
@@ -472,6 +510,7 @@
             }
             
             .step {
+                width: 100%;
                 min-height: 200px;
             }
             
