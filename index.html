@@ -30,7 +30,7 @@
             height: 210mm;
             margin: auto;
             background: white;
-            padding: 10mm;
+            padding: 15mm 10mm;
             border-radius: 12px;
             box-shadow: 0 8px 30px rgba(0,0,0,0.1);
             display: flex;
@@ -42,28 +42,28 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 3px solid #7c3aed;
+            border-bottom: 3px solid #8b5cf6;
             padding-bottom: 10px;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             flex-shrink: 0;
         }
 
         .title {
-            font-size: 28px;
+            font-size: 32px;
             font-weight: 700;
-            color: #7c3aed;
+            color: #8b5cf6;
             display: flex;
             align-items: center;
             gap: 10px;
         }
 
         .title-emoji {
-            font-size: 32px;
+            font-size: 36px;
         }
 
         .student-info {
             display: flex;
-            gap: 15px;
+            gap: 20px;
         }
 
         .info-item {
@@ -81,7 +81,7 @@
         .info-item input {
             border: none;
             border-bottom: 2px solid #d1d5db;
-            width: 80px;
+            width: 100px;
             padding: 3px 6px;
             font-size: 14px;
             text-align: center;
@@ -91,114 +91,100 @@
         
         .info-item input:focus {
             outline: none;
-            border-bottom-color: #7c3aed;
+            border-bottom-color: #8b5cf6;
         }
         
         .sections {
             display: flex;
-            gap: 10px;
+            gap: 15px;
             flex-grow: 1;
             height: calc(100% - 80px);
         }
         
         .step {
             flex: 1;
-            border: 4px solid;
-            border-radius: 12px;
-            padding: 10px;
+            border: 5px solid;
+            border-radius: 20px;
+            padding: 15px;
             transition: all 0.3s ease;
             background: white;
             display: flex;
             flex-direction: column;
             overflow: hidden;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: relative;
         }
 
         .step:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
 
         .step.think { 
             border-color: #3b82f6;
-            background: linear-gradient(135deg, rgba(59,130,246,0.02) 0%, rgba(59,130,246,0.01) 100%);
+            background: rgba(59, 130, 246, 0.02);
         }
         .step.puzzle { 
             border-color: #f59e0b;
-            background: linear-gradient(135deg, rgba(245,158,11,0.02) 0%, rgba(245,158,11,0.01) 100%);
+            background: rgba(245, 158, 11, 0.02);
         }
         .step.inquiry { 
             border-color: #10b981;
-            background: linear-gradient(135deg, rgba(16,185,129,0.02) 0%, rgba(16,185,129,0.01) 100%);
+            background: rgba(16, 185, 129, 0.02);
         }
 
         .step-header {
             display: flex;
             align-items: center;
-            margin-bottom: 8px;
-            padding: 8px;
-            border-radius: 8px;
+            gap: 10px;
+            margin-bottom: 12px;
             flex-shrink: 0;
-        }
-
-        .step.think .step-header { 
-            background: linear-gradient(135deg, rgba(59,130,246,0.1) 0%, rgba(59,130,246,0.05) 100%);
-        }
-        .step.puzzle .step-header { 
-            background: linear-gradient(135deg, rgba(245,158,11,0.1) 0%, rgba(245,158,11,0.05) 100%);
-        }
-        .step.inquiry .step-header { 
-            background: linear-gradient(135deg, rgba(16,185,129,0.1) 0%, rgba(16,185,129,0.05) 100%);
         }
         
         .step-emoji {
-            font-size: 24px;
-            margin-right: 8px;
+            font-size: 28px;
         }
         
         .step-title {
-            font-size: 20px;
+            font-size: 22px;
             font-weight: 700;
         }
 
-        .step.think .step-title { color: #1d4ed8; }
-        .step.puzzle .step-title { color: #d97706; }
-        .step.inquiry .step-title { color: #047857; }
+        .step.think .step-title { color: #3b82f6; }
+        .step.puzzle .step-title { color: #f59e0b; }
+        .step.inquiry .step-title { color: #10b981; }
         
         .step-desc {
-            font-size: 13px;
-            margin-bottom: 10px;
-            color: #555;
+            font-size: 14px;
+            margin-bottom: 15px;
+            color: #4b5563;
             line-height: 1.5;
-            padding: 0 8px;
             flex-shrink: 0;
         }
         
         .step-content {
             flex-grow: 1;
-            padding: 8px;
             display: flex;
         }
         
-        textarea {
+        .writing-box {
             width: 100%;
             height: 100%;
-            padding: 12px;
+            padding: 15px;
             font-size: 14px;
             line-height: 1.8;
             border: 2px solid #e5e7eb;
-            border-radius: 8px;
+            border-radius: 12px;
             resize: none;
-            background-color: #fcfcfc;
+            background-color: rgba(249, 250, 251, 0.5);
             transition: all 0.3s ease;
             font-family: 'Noto Sans KR', sans-serif;
         }
 
-        textarea:focus {
+        .writing-box:focus {
             outline: none;
-            border-color: #7c3aed;
+            border-color: #8b5cf6;
             background-color: white;
-            box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+            box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.1);
         }
 
         /* Print Controls */
@@ -208,7 +194,7 @@
         }
         
         .print-button {
-            background: #7c3aed;
+            background: #8b5cf6;
             color: white; 
             border: none; 
             padding: 12px 24px;
@@ -216,7 +202,7 @@
             font-size: 16px; 
             font-weight: bold;
             cursor: pointer; 
-            box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
+            box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
             transition: all 0.3s ease;
             margin: 0 10px;
             font-family: 'Noto Sans KR', sans-serif;
@@ -224,7 +210,7 @@
         
         .print-button:hover { 
             transform: translateY(-2px); 
-            box-shadow: 0 6px 16px rgba(124, 58, 237, 0.4); 
+            box-shadow: 0 6px 16px rgba(139, 92, 246, 0.4); 
         }
         
         .print-button:active { 
@@ -301,7 +287,7 @@
         }
         
         .modal-body strong { 
-            color: #7c3aed; 
+            color: #8b5cf6; 
         }
         
         .modal-body ul { 
@@ -330,12 +316,12 @@
         }
         
         .modal-button.confirm { 
-            background-color: #7c3aed; 
+            background-color: #8b5cf6; 
             color: white; 
         }
         
         .modal-button.confirm:hover { 
-            background-color: #6d28d9; 
+            background-color: #7c3aed; 
         }
         
         .modal-button.cancel { 
@@ -371,17 +357,18 @@
                 padding: 0; 
                 margin: 0;
                 background-color: white !important;
-                -webkit-print-color-adjust: exact;
-                print-color-adjust: exact;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                color-adjust: exact !important;
             }
             
             .worksheet-container { 
                 margin: 0; 
-                box-shadow: none; 
-                border-radius: 0; 
+                box-shadow: none !important; 
+                border-radius: 0 !important; 
                 width: 297mm;
                 height: 210mm;
-                padding: 8mm;
+                padding: 15mm 10mm;
                 page-break-after: avoid;
                 page-break-inside: avoid;
             }
@@ -390,102 +377,75 @@
                 display: none !important; 
             }
             
-            /* 헤더 최적화 */
+            /* 헤더 */
             .header {
-                padding-bottom: 6px;
-                margin-bottom: 10px;
-                border-bottom: 2px solid #7c3aed !important;
+                border-bottom: 3px solid #8b5cf6 !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
             }
             
             .title { 
-                font-size: 24px; 
-                color: #7c3aed !important;
+                color: #8b5cf6 !important;
             }
             
-            .title-emoji {
-                font-size: 28px;
-            }
-            
-            .info-item label {
-                font-size: 12px;
-            }
-            
-            .info-item input {
-                font-size: 12px;
-                border-bottom: 1px solid #999 !important;
-                width: 70px;
-            }
-            
-            /* 섹션 최적화 */
-            .sections {
-                gap: 8px;
-                height: calc(100% - 60px);
-            }
-            
+            /* 섹션 - 색상 유지 중요! */
             .step {
-                box-shadow: none !important;
-                transform: none !important;
-                border-width: 3px;
-                padding: 8px;
+                border-width: 5px !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                color-adjust: exact !important;
             }
             
-            .step-header {
-                padding: 6px;
-                margin-bottom: 6px;
-                background: #f8f9fa !important;
+            .step.think { 
+                border-color: #3b82f6 !important;
+                background-color: rgba(59, 130, 246, 0.02) !important;
+                -webkit-print-color-adjust: exact !important;
             }
             
-            .step-emoji {
-                font-size: 20px;
+            .step.puzzle { 
+                border-color: #f59e0b !important;
+                background-color: rgba(245, 158, 11, 0.02) !important;
+                -webkit-print-color-adjust: exact !important;
             }
             
-            .step-title { 
-                font-size: 18px; 
-                color: #000 !important;
+            .step.inquiry { 
+                border-color: #10b981 !important;
+                background-color: rgba(16, 185, 129, 0.02) !important;
+                -webkit-print-color-adjust: exact !important;
             }
             
-            .step-desc { 
-                font-size: 11px; 
-                margin-bottom: 8px;
-                padding: 0 6px;
+            .step-title {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
             }
             
-            .step-content {
-                padding: 6px;
+            .step.think .step-title { 
+                color: #3b82f6 !important; 
+            }
+            .step.puzzle .step-title { 
+                color: #f59e0b !important; 
+            }
+            .step.inquiry .step-title { 
+                color: #10b981 !important; 
             }
             
-            textarea { 
-                font-size: 13px; 
-                line-height: 1.6;
-                color: #000 !important;
-                background-color: white !important;
-                border: 1px solid #999 !important;
-                padding: 10px;
+            .writing-box { 
+                background-color: rgba(249, 250, 251, 0.5) !important;
+                border: 2px solid #e5e7eb !important;
+                -webkit-print-color-adjust: exact !important;
             }
             
             /* placeholder 텍스트 숨기기 */
-            textarea::placeholder,
+            .writing-box::placeholder,
             .info-item input::placeholder {
                 color: transparent !important;
             }
             
-            /* 색상 최적화 */
-            .step.think { 
-                border-color: #3b82f6 !important;
-                background: rgba(59,130,246,0.02) !important;
+            /* 호버 효과 제거 */
+            .step:hover {
+                transform: none !important;
+                box-shadow: none !important;
             }
-            .step.puzzle { 
-                border-color: #f59e0b !important;
-                background: rgba(245,158,11,0.02) !important;
-            }
-            .step.inquiry { 
-                border-color: #10b981 !important;
-                background: rgba(16,185,129,0.02) !important;
-            }
-            
-            .step.think .step-title { color: #3b82f6 !important; }
-            .step.puzzle .step-title { color: #f59e0b !important; }
-            .step.inquiry .step-title { color: #10b981 !important; }
         }
 
         @media (max-width: 768px) {
@@ -558,7 +518,7 @@
                 </div>
                 <div class="step-content">
                     <textarea 
-                        class="writing-area" 
+                        class="writing-box" 
                         placeholder="이 주제에 대해 이미 알고 있는 내용을 적어보세요..."
                         aria-label="생각 단계 작성란"></textarea>
                 </div>
@@ -574,7 +534,7 @@
                 </div>
                 <div class="step-content">
                     <textarea 
-                        class="writing-area" 
+                        class="writing-box" 
                         placeholder="궁금한 점이나 이해하기 어려운 부분을 적어보세요..."
                         aria-label="퍼즐 단계 작성란"></textarea>
                 </div>
@@ -590,7 +550,7 @@
                 </div>
                 <div class="step-content">
                     <textarea 
-                        class="writing-area" 
+                        class="writing-box" 
                         placeholder="탐구 계획이나 방법을 적어보세요..."
                         aria-label="탐구 단계 작성란"></textarea>
                 </div>
@@ -611,7 +571,7 @@
                 <ul>
                     <li><strong>대상:</strong> 실제 프린터 또는 'PDF로 저장' 선택</li>
                     <li><strong>레이아웃:</strong> 🎨 <strong>가로</strong> (Landscape)</li>
-                    <li><strong>여백:</strong> 📄 <strong>없음</strong> 또는 '최소'</li>
+                    <li><strong>여백:</strong> 📄 <strong>없음</strong></li>
                     <li><strong>옵션 더보기 → 머리글과 바닥글:</strong> 🚫 <strong>체크 해제</strong></li>
                     <li><strong>옵션 더보기 → 배경 그래픽:</strong> ✅ <strong>체크</strong></li>
                 </ul>
@@ -734,7 +694,7 @@
                 });
                 
                 // 모든 textarea 초기화
-                const textareas = document.querySelectorAll('.writing-area');
+                const textareas = document.querySelectorAll('.writing-box');
                 textareas.forEach(textarea => {
                     textarea.value = '';
                 });
@@ -768,9 +728,9 @@
             const data = {
                 grade: document.querySelectorAll('.info-input')[0].value,
                 name: document.querySelectorAll('.info-input')[1].value,
-                think: document.querySelectorAll('.writing-area')[0].value,
-                puzzle: document.querySelectorAll('.writing-area')[1].value,
-                explore: document.querySelectorAll('.writing-area')[2].value,
+                think: document.querySelectorAll('.writing-box')[0].value,
+                puzzle: document.querySelectorAll('.writing-box')[1].value,
+                explore: document.querySelectorAll('.writing-box')[2].value,
                 timestamp: new Date().toISOString()
             };
             
@@ -779,7 +739,7 @@
 
         // 입력 시마다 자동 저장
         document.addEventListener('input', function(e) {
-            if (e.target.matches('.info-input, .writing-area')) {
+            if (e.target.matches('.info-input, .writing-box')) {
                 autoSave();
             }
         });
@@ -791,7 +751,7 @@
                 try {
                     const data = JSON.parse(savedData);
                     const inputs = document.querySelectorAll('.info-input');
-                    const textareas = document.querySelectorAll('.writing-area');
+                    const textareas = document.querySelectorAll('.writing-box');
                     
                     if (inputs[0]) inputs[0].value = data.grade || '';
                     if (inputs[1]) inputs[1].value = data.name || '';
